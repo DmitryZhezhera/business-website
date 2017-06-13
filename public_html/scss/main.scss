@@ -25,7 +25,8 @@ header{
     background:$bg_color_dark;
     div{
         height:120px;
-        img{
+        h1{
+            display: inline-block;
             margin-top: 36px;
         }
         nav{
@@ -59,7 +60,7 @@ header{
                     padding-right: 25px;
                     background-image: url(../images/arrow.png);
                     background-repeat: no-repeat;
-                    background-position:90%; //???              
+                    background-position:90%; //???  проблема с пиксельным позиционированием по райт           
                 }
                 ul{
                     display: none;
@@ -75,14 +76,14 @@ header{
                     border-top:none;
                     padding: 9px 0px 0 0px;
                     .nav_li2{
-                     border-bottom:solid 1px $bg_color_dark;
-                     margin: 0 5px 0 5px;
+                        border-bottom:solid 1px $bg_color_dark;
+                        margin: 0 5px 0 5px;
                     }
                     .nav_li2:last-child{
                         margin: 0;
                         padding: 0 0 7px 5px;
                     }
-                    
+
                     a{
                         text-transform: capitalize;
                         font: 13px/36px Arial;
@@ -143,8 +144,7 @@ header{
         background:$bg_color_dark;
         border-bottom: 1px solid #d9d9d9;
         #middel_section{ 
-            padding-top: 35px;
-            padding-bottom:45px;
+            padding: 35px 0 46px 0;
             .text_box{
                 width: 220px;
                 height: 191px;
@@ -152,13 +152,9 @@ header{
                 margin-left: 36px;
                 span{
                     text-transform: uppercase;
-                    font: bold 15px Arial;
-                    background-repeat: no-repeat;
+                    font: bold 15px/20px Arial;
                     background-position: 0 4px;
-                    display: inline-block;
-                    height: 42px;
-                    padding-left: 60px;
-                    line-height: 34px;
+                    padding: 11px 0 12px 60px;
                 }
                 #text_box1{
                     background-image: url(../images/mds1.png);
@@ -194,38 +190,47 @@ header{
         }
     }
     #latest_works{
-        width:1000px;
-        margin: auto;
         span{
-            display: inline-block;
-            height: 24px;
-            margin-top: 19px;
-            text-transform: uppercase;
-            font:bold 15px/20px Arial;
-            padding-left: 40px;
-            padding-top: 5px;
             background-image: url(../images/arrow_latest_work.png);
-            background-repeat: no-repeat;
-            background-position-x: 1px;
-
-
+            background-position: 1px 0;
+            padding: 4px 0 0 39px;
         }
         .slider_lw{
-            height: 221px;
-            width:1000px;
+            height: 222px;
             margin-top: 10px;
-            padding-top: 20px;
-            padding-bottom: 35px;
+            padding: 20px 0 0 0;
             border-bottom: 1px solid #d9d9d9;
             border-top: 1px solid #d9d9d9;
             .slick-slide{
-                height: 160px;
+                img{
+                    width: 220px;
+                    height: 160px;
+                }
+                /*                img:after{
+                                
+                                    content: "";
+                                    height: 81px;
+                                    width: 100%;
+                                    background-color: $color_blue;
+                                }*/
             }
+        }
+        .slick-next { // TODO ???? косяк с старым фоном ???
+                      right: 0px;
+                      top: -29px;
+                      color: #000;
+                      //background-color:  $bg_color_slider;
+                      background: url(../images/latest_work_arrow_next.png);
+        }
+        .slick-prev {
+            left: 950px;
+            top: -29px;
+            color: #000;
+            //background-color: $bg_color_slider;
+            background: url(../images/latest_work_arrow_prev.png);
         }
     }
     .wrapper{
-        margin: auto;
-        width:1000px;
         #testimonials, #clients{
             width: 50%;
             height: 300px;
@@ -237,8 +242,7 @@ header{
             margin-top: 20px;
             text-transform: uppercase;
             font:bold 15px/20px Arial;
-            padding-left: 39px;
-            padding-top: 5px;
+            padding:4px 0 0 39px;
             background-image: url(../images/testimonials.png);
             background-repeat: no-repeat;
             background-position-x: 0px;
@@ -252,15 +256,14 @@ header{
                 font:14px/24px Arial;
             }
             .author{
-                margin-top: 23px;
+                margin-top: 26px;
                 background: none;
-                padding: 0;
+                padding: 0 0 0 0px;
                 text-transform: none;
                 font:italic bold 14px/24px Arial;            
             }
         }
         #clients{
-            /*padding-left:10px;*/
             span{
                 background-image: url(../images/OurClients.png);
                 background-position-x: 20px;
@@ -268,25 +271,27 @@ header{
                 padding-left: 58px;
                 margin-bottom: 11px;
             }
-            img{
-                display: inline-block;
-                height: 98px;
-                width: 157px;
-                border:1px solid #e8ebf1;
-                box-shadow: 0 0 25px rgba(0,0,0,0.5) inset;
-                margin: 0;
-            }
-            /*            .clients_logo{
+            /*            img{
+                            display: inline-block;
                             height: 98px;
-                            width: 157px;   
+                            width: 157px;
                             border:1px solid #e8ebf1;
-                            float: left;
                             box-shadow: 0 0 25px rgba(0,0,0,0.5) inset;
-                            img{
-                                display: block;
-                                margin: auto;
-                            }
+                            margin: 0;
                         }*/
+            .clients_logo{
+                height: 100px;
+                width: 160px;
+                box-sizing: border-box;
+                border:1px solid #e8ebf1;
+                float: right;
+                box-shadow: 0 0 25px rgba(0,0,0,0.5) inset;
+                img{
+                    display: block;
+                    margin: auto;
+                    
+                }
+            }
 
         }
     }
@@ -304,6 +309,7 @@ header{
             display: inline-block;
         }
         button{
+            //TODO make bg with 1px img
             width: 240px;
             height: 60px;
             text-transform: uppercase;
@@ -401,22 +407,24 @@ footer{
             }  
             margin-left: 40px; 
             max-width:215px;
+            a{
+                float: right;
+                margin: 9px -6px -6px 23px;
+            }
             img{
-                margin: 9px -5px 1px 22px;
                 width: 53px;
                 height: 51px;
-                float: right;
             }
         }
 
         #copyright{
             float: left;
             font: 13px/18px Arial;
-            margin-top: 34px;
+            margin-top: 40px;
         }
         .footer_logo{
             float: right;
-            margin-top: 35px;
+            margin-top: 40px;
         }
     }
 
