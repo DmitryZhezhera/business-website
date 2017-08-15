@@ -6,7 +6,9 @@ $bg_color_dark:#e8ebf1;
 $bg_color_slider:#81e4ed;
 $color_blue:#2aacc8;
 $width_main:1000px;
+$width_burger:620px;
 
+$transition_t:0.5s;
 *{
     margin: 0;
     padding: 0;
@@ -18,20 +20,70 @@ $width_main:1000px;
     clear: both;
 }
 .wrapper{
-    width:$width_main;
+    max-width:$width_main;
     margin: auto;
 }
 header{
     background:$bg_color_dark;
     div{
-        height:120px;
+        //min-height:120px;
         h1{
             display: inline-block;
             margin-top: 36px;
+            @media  (max-width:$width_burger){
+                margin-top: 5px;
+            }
+        }
+        #burger{
+            display: none;
+            @media  (max-width:$width_burger){
+                display: inline-block;
+                float:right;
+                border-radius:4px;
+                height: 7px;
+                width: 50px;
+                background-color: #333333;
+                margin: 9px 10px 30px 0;
+                position: relative;
+                //transition: rotate 3s; не работает ????
+                &:before, &:after {
+                    content: "";
+                    display: block;
+                    border-radius:4px;
+                    height: 7px;
+                    width: 50px;
+                    background-color: #333333;
+                    position: absolute;
+                    left: 0px;
+                    top: 13px;
+                }
+                &:after{
+                    top:26px;
+                }
+            }
+        }
+        .burger_on{
+            transform:rotate(45deg);
+            margin-top: 21px;
+            width: 40px;
+            display:inline-block;
+            &:before{
+                    top:0;
+                    width: 40px;
+                    transform:rotate(-90deg);
+                }
+            &:after{
+                    display: none;
+                }
         }
         nav{
-            margin-top: 40px;
+            margin: 40px 0px 39px 0px;
             float:right;  
+            @media  (max-width:$width_burger){
+                display:none;
+                margin: 0px;
+                float:none;
+            }
             a{
                 text-transform: uppercase;
                 text-decoration: none;
@@ -42,10 +94,32 @@ header{
                 padding:10px 0 11px 0;
                 margin:0 8px 0px 19px;
                 position:relative;
+                transition: background $transition_t;
+                @media (max-width:920px) {
+                    margin: 0px;
+                }
+                @media (max-width:$width_burger){
+                    display:block;
+                }
                 a{  
                     padding:0 10px 0 10px;
                     font: bold 13px/20px Arial;
                     color: #000000;
+                    transition: color $transition_t;
+                    @media  (max-width:800px){
+                        padding:0 1px 0 1px;
+                    }
+                    @media (max-width:$width_burger) {
+                        //display:block;
+                    }
+                }
+            }
+            .nav_li1:hover{
+                background: #ffffff;
+                padding-top: 5px;
+                border-top: 5px solid $color_blue;
+                a{
+                    color: $color_blue;
                 }
             }
             /*            .liul a:after{
@@ -54,8 +128,11 @@ header{
                             top: 9px;
                             right: 1px;
                         }*/
-            .liul{
+            .liul{ //class submenu
                 margin:0 -7px 0px 18px;
+                @media (max-width:800px){
+                     margin:0;
+                }
                 a{
                     padding-right: 25px;
                     background-image: url(../images/arrow.png);
@@ -83,12 +160,12 @@ header{
                         margin: 0;
                         padding: 0 0 7px 5px;
                     }
-
                     a{
                         text-transform: capitalize;
                         font: 13px/36px Arial;
                         background-image:none;
                         padding: 0 0px 0 11px;
+                        transition: color $transition_t;
                     }
                 }
             }
@@ -101,14 +178,6 @@ header{
                     a:hover{
                         color: $color_blue;
                     }
-                }
-            }
-            .nav_li1:hover{
-                background: #ffffff;
-                padding-top: 5px;
-                border-top: 5px solid $color_blue;
-                a{
-                    color: $color_blue;
                 }
             }
         }
@@ -146,7 +215,7 @@ header{
         #middel_section{ 
             padding: 35px 0 46px 0;
             .text_box{
-                width: 220px;
+                max-width: 220px;
                 height: 191px;
                 display: inline-block;
                 margin-left: 36px;
@@ -182,7 +251,6 @@ header{
                     background-position-y: 2px;
                     padding-left: 15px;
                 }
-
             }
             .text_box:first-child{
                 margin-left: 0px;
@@ -203,7 +271,7 @@ header{
             border-top: 1px solid #d9d9d9;
             .slick-slide{
                 img{
-                    width: 220px;
+                    max-width: 220px;
                     height: 160px;
                 }
                 /*                img:after{
@@ -215,25 +283,26 @@ header{
                                 }*/
             }
         }
-        .slick-next { // TODO ???? косяк с старым фоном ???
-                      right: 0px;
-                      top: -29px;
-                      color: #000;
-                      //background-color:  $bg_color_slider;
-                      background: url(../images/latest_work_arrow_next.png);
-        }
-        .slick-prev {
-            left: 950px;
+        .slick-next { 
+            right: 0px;
             top: -29px;
             color: #000;
-            //background-color: $bg_color_slider;
+            background: url(../images/latest_work_arrow_next.png);
+        }
+        .slick-prev {
+            right: 30px !important;  //TO DO it doesnt work !!!
+            top: -29px;
+            color: #000;
             background: url(../images/latest_work_arrow_prev.png);
+        }
+        .slick-prev:before, .slick-next:before {
+            font-size: 0px;
         }
     }
     .wrapper{
         #testimonials, #clients{
-            width: 50%;
-            height: 300px;
+            max-width: 50%;
+            min-height: 300px;
             float: left;
         }
         span{
@@ -289,15 +358,14 @@ header{
                 img{
                     display: block;
                     margin: auto;
-                    
                 }
             }
 
         }
     }
     #bottom_box{
-        width:1000px;
-        height: 140px;
+        max-width:$width_main;
+        min-height: 140px;
         box-sizing: border-box;
         margin: auto;
         border: 1px solid #81e4ed;
@@ -341,7 +409,6 @@ footer{
         text-decoration: none;
         color: #000;
     }
-
     h2{
         font: bold 15px/17px Arial;
         text-transform: uppercase;
@@ -350,8 +417,6 @@ footer{
     .wrapper{
         padding-top:29px;
         padding-bottom: 37px;
-        width: 1000px;
-        margin: auto;
         font:15px/17px Arial;
         .item{
             float: left;
@@ -412,11 +477,10 @@ footer{
                 margin: 9px -6px -6px 23px;
             }
             img{
-                width: 53px;
+                max-width: 53px;
                 height: 51px;
             }
         }
-
         #copyright{
             float: left;
             font: 13px/18px Arial;
@@ -427,5 +491,5 @@ footer{
             margin-top: 40px;
         }
     }
-
 }
+
